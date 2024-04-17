@@ -342,7 +342,7 @@ router.get("/track", async (req, res) => {
 });
 
 // GET ALL APPROVAL
-router.get("/manageprojects", async (req, res) => {
+router.get("/manageproject", async (req, res) => {
   try {
     if (
       req.session.authUser.auth == true &&
@@ -361,7 +361,7 @@ router.get("/manageprojects", async (req, res) => {
 });
 
 // GET MANAGE USERS
-router.get("/manageusers", async (req, res) => {
+router.get("/manageaccount", async (req, res) => {
   try {
     if (
       req.session.authUser.auth == true &&
