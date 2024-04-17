@@ -7,7 +7,7 @@ var QRCode = require("qrcode");
 var transactionModel = require("./transaction");
 const projectsdb = require("./projectsdb");
 const planCost = require("./planCost");
-require("dotenv").config({ path: "./config.env" });
+require("dotenv").config();
 
 router.use((req, res, next) => {
   if (req.url == "/login") {
