@@ -1,7 +1,7 @@
 require("dotenv").config({ path: "./config.env" });
 const mongoose = require("mongoose");
 
-mongoose.connect(process.env.MONGODB_URI);
+// mongoose.connect(process.env.MONGODB_URI);
 
 const transactionSchema = mongoose.Schema({
   userId: String,
