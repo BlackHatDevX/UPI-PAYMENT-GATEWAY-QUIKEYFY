@@ -1,8 +1,10 @@
 # Quikeyfy : UPI Payment Gateway
 
-Hosted Link: [Your_Hosted_Link_Here](#)
+Hosted Link: https://quikeyfy.onrender.com/
 
-## Empower your transactions with zero charges and enhanced security, while fostering independence.
+## Quikeyfy: Zero Transaction Charges, Maximum Security, Total Independence
+
+## Screenshots :
 
 ## Features
 
