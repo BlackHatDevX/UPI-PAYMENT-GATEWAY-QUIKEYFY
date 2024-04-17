@@ -166,7 +166,6 @@ router.get("/paynow", async (req, res) => {
 router.get("/uploadproof", (req, res) => {
   try {
     if (req.session.authUser.auth == true) {
-      console.log(req.session.trId);
       res.render("main/user/uploadProof", { trId: req.session.trId });
     } else {
       res.redirect("/");
@@ -184,7 +183,6 @@ router.post("/postproof", uploadproof.single("proof"), async (req, res) => {
     if (req.session.trId) {
       trId = req.session.trId;
     }
-    console.log(trId);
     const d = new Date();
     // Create a new Date object
     const currentDate = new Date();
@@ -214,7 +212,6 @@ router.post("/postproof", uploadproof.single("proof"), async (req, res) => {
     );
     res.redirect("/profile");
   } catch (error) {
-    console.log(error);
     res.redirect("/profile");
   }
 });
@@ -316,20 +313,6 @@ router.get("/cancelPayment", async (req, res) => {
   res.redirect("/profile");
 });
 
-// POST APPROVE
-router.post("/approve", async (req, res) => {
-  try {
-    req.session.trData.status = "pendingForApproval";
-    const img = req.body.paymentProof;
-    const trData = req.session.trData;
-    console.log(trData);
-    console.log(img);
-    res.send("Submited for approval");
-  } catch (error) {
-    res.redirect("/error");
-  }
-});
-
 // GET TRANSACTIONS
 router.get("/track", async (req, res) => {
   try {
@@ -372,11 +355,9 @@ router.get("/manageusers", async (req, res) => {
         users: transactions,
       });
     } else {
-      console.log(req.session.authUser);
       res.redirect("/error");
     }
   } catch (error) {
-    console.log(error);
     res.redirect("/error");
   }
 });
@@ -407,7 +388,6 @@ router.get("/alltransactions", async (req, res) => {
       req.session.authUser.auth == true &&
       req.session.authUser.authID == "admin"
     ) {
-      console.log(req.session.authUser);
       const transactions = await transactionModel.find();
       res.render("main/admin/allTransactions", {
         transactionEntries: transactions,
