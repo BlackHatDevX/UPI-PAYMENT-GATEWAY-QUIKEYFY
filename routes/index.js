@@ -367,10 +367,11 @@ router.get("/manageusers", async (req, res) => {
       req.session.authUser.auth == true &&
       req.session.authUser.authID == "admin"
     ) {
-      const transactions = await usermodel.find();
-      res.render("main/admin/manageusers", {
-        users: transactions,
-      });
+      // const transactions = await usermodel.find();
+      // res.render("main/admin/manageusers", {
+      //   users: transactions,
+      // });
+      res.render("main/admin/manageusers");
     } else {
       console.log(req.session.authUser);
       res.redirect("/error");
