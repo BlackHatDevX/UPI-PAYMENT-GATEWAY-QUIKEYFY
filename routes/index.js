@@ -6,6 +6,7 @@ var uploadproof = require("./multerproof");
 var QRCode = require("qrcode");
 var transactionModel = require("./transaction");
 const projectsdb = require("./projectsdb");
+const planCost = require("./planCost");
 require("dotenv").config({ path: "./config.env" });
 
 router.use((req, res, next) => {
@@ -106,7 +107,9 @@ router.post("/submitproject", uploadfile.single("file"), async (req, res) => {
 router.get("/paynow", async (req, res) => {
   try {
     if (req.session.authUser.auth) {
-      let amount = 499;
+      let money = await planCost.find();
+      money = money[0].amount;
+      let amount = money;
       const user = req.session.authUser;
       const userID = user.authID;
       //fetch data of user with id
@@ -193,10 +196,12 @@ router.post("/postproof", uploadproof.single("proof"), async (req, res) => {
     let seconds = d.getSeconds();
     let actualDate = dateString;
     let actualTime = hour + ":" + minutes + ":" + seconds;
+    let money = await planCost.find();
+    money = money[0].amount;
     const filter = { trId: trId };
     const update = {
       platform: platform,
-      charge: 500,
+      charge: amount,
       status: "Payment Under Verification ⏳",
       proof: "/proofFiles/" + req.session.Prooffile,
       prooftime: actualTime,
@@ -287,10 +292,12 @@ router.get("/admin", (req, res) => {
 });
 
 // GET ORDER FORM
-router.get("/order", (req, res) => {
+router.get("/order", async (req, res) => {
   try {
     if (req.session.authUser.auth == true) {
-      res.render("main/user/order");
+      let money = await planCost.find();
+      money = money[0].amount;
+      res.render("main/user/order", { plan: money });
     } else res.redirect("/");
   } catch (error) {}
 });
@@ -376,18 +383,15 @@ router.get("/alltransactions", async (req, res) => {
 // GET ALL APPROVAL
 router.get("/manageprojects", async (req, res) => {
   try {
-    console.log("pass1");
     if (
       req.session.authUser.auth == true &&
       req.session.authUser.authID == "admin"
     ) {
-      console.log("pass2");
       const transactions = await projectsdb.find();
       res.render("main/admin/manageprojects", {
         database: transactions,
       });
     } else {
-      console.log(req.session.authUser);
       res.redirect("/error");
     }
   } catch (error) {
@@ -447,9 +451,11 @@ router.get("/approve/:trId", async (req, res) => {
       filter,
       update
     );
+    let money = await planCost.find();
+    money = money[0].amount.toString();
     const filterPr = { trId: trId };
     const updatePr = {
-      charge: "500",
+      charge: amount,
     };
     // `doc` is the document _before_ `update` was applied
     let submittedPr = await projectsdb.findOneAndUpdate(filterPr, updatePr);
