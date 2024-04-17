@@ -341,45 +341,6 @@ router.get("/track", async (req, res) => {
   }
 });
 
-// GET PENDING APPROVAL
-router.get("/pending", async (req, res) => {
-  try {
-    if (
-      req.session.authUser.auth == true &&
-      req.session.authUser.authID == "admin"
-    ) {
-      const transactions = await transactionModel.find({
-        status: "Payment Under Verification ⏳",
-      });
-      res.render("main/admin/pendingApproval", { transactions: transactions });
-    } else {
-      res.redirect("/error");
-    }
-  } catch (error) {
-    res.redirect("/error");
-  }
-});
-
-// GET ALL TRANSACTIONS
-router.get("/alltransactions", async (req, res) => {
-  try {
-    if (
-      req.session.authUser.auth == true &&
-      req.session.authUser.authID == "admin"
-    ) {
-      console.log(req.session.authUser);
-      const transactions = await transactionModel.find();
-      res.render("main/admin/allTransactions", {
-        transactionEntries: transactions,
-      });
-    } else {
-      res.redirect("/error");
-    }
-  } catch (error) {
-    res.redirect("/error");
-  }
-});
-
 // GET ALL APPROVAL
 router.get("/manageprojects", async (req, res) => {
   try {
@@ -416,6 +377,45 @@ router.get("/manageusers", async (req, res) => {
     }
   } catch (error) {
     console.log(error);
+    res.redirect("/error");
+  }
+});
+
+// GET PENDING APPROVAL
+router.get("/pending", async (req, res) => {
+  try {
+    if (
+      req.session.authUser.auth == true &&
+      req.session.authUser.authID == "admin"
+    ) {
+      const transactions = await transactionModel.find({
+        status: "Payment Under Verification ⏳",
+      });
+      res.render("main/admin/pendingApproval", { transactions: transactions });
+    } else {
+      res.redirect("/error");
+    }
+  } catch (error) {
+    res.redirect("/error");
+  }
+});
+
+// GET ALL TRANSACTIONS
+router.get("/alltransactions", async (req, res) => {
+  try {
+    if (
+      req.session.authUser.auth == true &&
+      req.session.authUser.authID == "admin"
+    ) {
+      console.log(req.session.authUser);
+      const transactions = await transactionModel.find();
+      res.render("main/admin/allTransactions", {
+        transactionEntries: transactions,
+      });
+    } else {
+      res.redirect("/error");
+    }
+  } catch (error) {
     res.redirect("/error");
   }
 });
