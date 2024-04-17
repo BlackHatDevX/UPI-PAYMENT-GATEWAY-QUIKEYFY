@@ -1,0 +1,38 @@
+
+  .nav{
+    user-select: none;
+    width: auto;
+    margin-top: 0.5%;
+    background-color:#333;
+    border-radius:20px;
+    color:#fff;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .nav p{
+    padding: 0 10px;
+    margin:20px;
+    cursor : pointer;
+    border-radius: 20px;
+    transition-duration: 0.4s;
+  }
+  .nav p:hover{
+    background-color: #fff;
+    color: #333;
+  }
+
+  img{
+    position:auto;
+  }
+  @media (min-width:986px) {
+    .nav{
+        width: 70%;
+        margin: 0 10%;
+        margin-top: 0.5%;
+        background-color:#333;
+        border-radius:20px;
+        color:#fff;
+        display: flex;
+        justify-content: space-evenly;
+      }
+  }

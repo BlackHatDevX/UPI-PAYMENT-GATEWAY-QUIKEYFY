@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error</title>
+    <link rel="stylesheet" href="stylesheets/error.css" />
+  </head>
+  <body>
+    <nav class="shelf">
+      <a class="book home-page" href="/" style="text-decoration: none"
+        >Home page</a
+      >
+      <a class="book about-us" href="/#about" style="text-decoration: none"
+        >About us</a
+      >
+      <a class="book contact" href="/#contact" style="text-decoration: none"
+        >Contact</a
+      >
+      <a class="book faq" href="/#faq" style="text-decoration: none">F.A.Q.</a>
+
+      <span class="book not-found"></span>
+
+      <span class="door left"></span>
+      <span class="door right"></span>
+    </nav>
+    <h1>Error 404</h1>
+    <p>The page you're loking for can't be found</p>
+  </body>
+</html>
+<h1><%= error.message %></h1>
+<h2><%= error.status %></h2>
+<pre><%= error.stack %></pre>

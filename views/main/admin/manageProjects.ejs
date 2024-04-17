@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Database Entries</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <button
+        class="btn btn-primary mt-4 mb-4"
+        onclick="location.href='/admin'"
+      >
+        Home
+      </button>
+      <h1>Project Entries</h1>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Sr No.</th>
+            <th>Email</th>
+            <th>Transaction ID</th>
+            <th>Charge</th>
+            <th>Type</th>
+            <th>Notes</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Download</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (let i = database.length - 1; i >= 0; i--) { %> <% let entry =
+          database[i]; %>
+          <tr>
+            <td><%= database.length - i %></td>
+            <td><%= entry.email %></td>
+            <td><%= entry.trId %></td>
+            <td><%= entry.charge %></td>
+            <td><%= entry.type %></td>
+            <td><%= entry.notes %></td>
+            <td><%= entry.date %></td>
+            <td><%= entry.time %></td>
+            <td>
+              <a href="<%= entry.file %>" class="btn btn-primary" download
+                >Download</a
+              >
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

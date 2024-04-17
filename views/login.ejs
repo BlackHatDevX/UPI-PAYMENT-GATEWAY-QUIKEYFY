@@ -1,0 +1,66 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quikeyfy</title>
+    <link rel="stylesheet" href="stylesheets/user/login.css" />
+  </head>
+  <body>
+    <!-- FORMULAIRE DE CONNEXION -->
+
+    <div class="card">
+      <button class="button-blue" role="button" onclick="location.href='/'">
+        <div>< BACK TO HOME</div>
+      </button>
+
+      <h2>Login to Quikeyfy</h2>
+      <% if (showError == true) { %>
+      <center>
+        <h4
+          style="
+            color: #ffffff;
+            background-color: rgba(226, 54, 54, 0.527);
+            border-radius: 12px;
+            padding: 2px;
+            margin-top: 15px;
+            font-size: 15px;
+          "
+        >
+          Oops! Data Mismatched
+        </h4>
+      </center>
+      <%} else { %> <% } %>
+
+      <!-- SE CONNECTER / S'INSCRIRE -->
+      <div class="login_register">
+        <a href="" class="login">Login</a>
+        <a href="/signup" class="register">Signup</a>
+      </div>
+
+      <!-- FORMULAIRE -->
+      <form class="form" action="/login" method="post">
+        <input
+          type="email"
+          name="email"
+          placeholder="Email Address"
+          class="email"
+          value=""
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="password"
+          class="pass"
+        />
+        <!-- <a href="#" class="fp">Forgot password?</a> -->
+        <!-- BOUTTON LOGIN -->
+        <button type="submit" class="login_btn">Login</button>
+      </form>
+
+      <div class="footer_card">
+        <p>Not a member?</p>
+        <a href="/signup">Signup now</a>
+      </div>
+    </div>
+  </body>
+</html>

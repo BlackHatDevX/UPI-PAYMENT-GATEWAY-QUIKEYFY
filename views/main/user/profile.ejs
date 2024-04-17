@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile: <%= user.username %></title>
+    <link rel="stylesheet" href="/stylesheets/user/profile.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>    
+</head>
+<body>
+  <%- include('../../templates/header') %>
+    <div class='container'>
+        <div class='avatar'>
+          <img src='/profileImages/user4.jpg'>
+          <!-- <img src='https://assets.codepen.io/5453939/internal/avatars/users/default.png?format=auto&amp;version=1638034680&amp;width=300&amp;height=300'> -->
+        </div>
+        <div class='username'>
+          <h3><%= user.username %></h3>
+          <!-- <p><%= user %></p> -->
+        </div>
+        <div class='button' data-target='#home' onclick="location.href='/order'">
+          <div class='button__icon'>
+            <i class='fa-solid fa-house'></i>
+          </div>
+          <div class='button__text'>
+            Place Order
+          </div>
+        </div>
+        <div class='button' data-target='#contact' onclick="location.href='/track'" >
+          <div class='button__icon'>
+            <i class='fa-solid fa-phone'></i>
+          </div>
+          <div class='button__text'>
+            Track Order
+          </div>
+        </div>
+      </div>
+      </div>
+        <%- include('../../templates/footer') %>
+        <footer></footer>
+      <script src="/javascripts/profile.js"></script>
+      
+</body>
+</html>

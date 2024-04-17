@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Gateway</title>
+    <link rel="stylesheet" href="/stylesheets/user/payment.css" />
+  </head>
+  <body>
+    <%- include('../../templates/header') %>
+    <div class="page resolution-center-page L">
+      <!-- <a href="">Go Back</a> -->
+      <h1 class="title">Scan to pay with any UPI app</h1>
+      <div class="showBody">
+        <div>
+          <img src="<%= QrCode %>" alt="UPI QR" height="200px" class="qr" />
+        </div>
+        <div class="right">
+          <p>User ID: <%= userID %></p>
+          <p>Transaction ID: <%= trId %></p>
+          <p>Product Name: <%= PType.toUpperCase() %></p>
+          <p>Amount: <%= amount %> Rs</p>
+          <div class="buttons">
+            <button
+              class="btn btnGreen"
+              onclick='location.href="<%= moneyUrl %>"'
+              type="button"
+            >
+              Pay Now
+            </button>
+            <button
+              class="btn btnYellow"
+              onclick="location.href='/uploadproof'"
+              type="button"
+            >
+              Submit Proof
+            </button>
+            <button
+              class="btn btnGrey"
+              onclick="location.href='/cancelPayment'"
+              type="button"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

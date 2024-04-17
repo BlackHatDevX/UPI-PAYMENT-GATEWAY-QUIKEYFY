@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Database Entries</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <button
+        class="btn btn-primary mt-4 mb-4"
+        onclick="location.href='/admin'"
+      >
+        Home
+      </button>
+      <h1>Transaction Entries</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Sr N0.</th>
+            <th>Transaction ID</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Username</th>
+            <th>Project Type</th>
+            <th>Amount</th>
+            <th>Time</th>
+            <th>Date</th>
+            <th>Proof</th>
+            <th>Proof Date</th>
+            <th>Proof Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% transactionEntries.reverse().forEach((entry, index) => { %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= entry.trId %></td>
+            <td><%= entry.email %></td>
+            <td><%= entry.status %></td>
+            <td><%= entry.username %></td>
+            <td><%= entry.PType %></td>
+            <td><%= entry.amount %></td>
+            <td><%= entry.time %></td>
+            <td><%= entry.date %></td>
+            <% if (entry.proof) { %>
+            <td><a href="<%= entry.proof %>">View</a></td>
+            <% } else { %>
+            <td>No Proof</td>
+            <% } %>
+            <td><%= entry.proofdate %></td>
+            <td><%= entry.prooftime %></td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

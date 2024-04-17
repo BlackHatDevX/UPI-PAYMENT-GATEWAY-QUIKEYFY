@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transactions</title>
+    <link rel="stylesheet" href="/stylesheets/user/mytransaction.css" />
+  </head>
+  <body>
+    <header><%- include('../../templates/header') %></header>
+    <section>
+      <h1>Order History</h1>
+      <% transactions.slice().reverse().forEach(element => { %>
+      <details>
+        <summary>
+          <div>
+            <h3>
+              <strong>Project: <%= element.PType.toUpperCase() %> |</strong>
+              <small
+                style="
+                  background-color: rgb(216, 168, 168);
+                  color: rgb(37, 41, 44);
+                  border-radius: 3px;
+                  padding: 2px;
+                "
+                ><%= element.status %></small
+              >
+              <% if (element.status=='Submit Proof') { %> |
+              <button onclick="location.href=('/uploadProof')">
+                Submit Now
+              </button>
+              <% } %>
+            </h3>
+            <span class="plus"><%= element.amount %> Rs</span>
+          </div>
+        </summary>
+        <div>
+          <dl>
+            <div>
+              <dt>Date</dt>
+              <dd><%= element.date %></dd>
+            </div>
+            <div>
+              <dt>Time</dt>
+              <dd><%= element.time %></dd>
+            </div>
+
+            <div>
+              <dt>Reference ID</dt>
+              <dd>
+                <%= element.trId %>
+                <button onclick="copyToClipboard('<%= element.trId %>')">
+                  📋
+                </button>
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </details>
+      <% }) %>
+    </section>
+
+    <script>
+      function copyToClipboard(text) {
+        const el = document.createElement("textarea");
+        el.value = text;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand("copy");
+        document.body.removeChild(el);
+        alert("Copied to clipboard");
+      }
+    </script>
+  </body>
+</html>
