@@ -360,6 +360,7 @@ router.get("/alltransactions", async (req, res) => {
       req.session.authUser.auth == true &&
       req.session.authUser.authID == "admin"
     ) {
+      console.log(req.session.authUser);
       const transactions = await transactionModel.find();
       res.render("main/admin/allTransactions", {
         transactionEntries: transactions,
@@ -384,6 +385,7 @@ router.get("/manageprojects", async (req, res) => {
         database: transactions,
       });
     } else {
+      console.log(req.session.authUser);
       res.redirect("/error");
     }
   } catch (error) {
@@ -403,9 +405,11 @@ router.get("/manageusers", async (req, res) => {
         users: transactions,
       });
     } else {
+      console.log(req.session.authUser);
       res.redirect("/error");
     }
   } catch (error) {
+    console.log(error);
     res.redirect("/error");
   }
 });
