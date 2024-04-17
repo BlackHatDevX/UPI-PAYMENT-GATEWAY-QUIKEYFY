@@ -376,10 +376,12 @@ router.get("/alltransactions", async (req, res) => {
 // GET ALL APPROVAL
 router.get("/manageprojects", async (req, res) => {
   try {
+    console.log("pass1");
     if (
       req.session.authUser.auth == true &&
       req.session.authUser.authID == "admin"
     ) {
+      console.log("pass2");
       const transactions = await projectsdb.find();
       res.render("main/admin/manageprojects", {
         database: transactions,
