@@ -342,14 +342,14 @@ router.get("/track", async (req, res) => {
 });
 
 // GET ALL APPROVAL
-router.get("/manageproject", async (req, res) => {
+router.get("/manageprojects", async (req, res) => {
   try {
     if (
       req.session.authUser.auth == true &&
       req.session.authUser.authID == "admin"
     ) {
       const transactions = await projectsdb.find();
-      res.render("main/admin/manageprojects", {
+      res.render("main/admin/manageProjects", {
         database: transactions,
       });
     } else {
@@ -361,17 +361,16 @@ router.get("/manageproject", async (req, res) => {
 });
 
 // GET MANAGE USERS
-router.get("/manageaccount", async (req, res) => {
+router.get("/manageusers", async (req, res) => {
   try {
     if (
       req.session.authUser.auth == true &&
       req.session.authUser.authID == "admin"
     ) {
-      // const transactions = await usermodel.find();
-      // res.render("main/admin/manageusers", {
-      //   users: transactions,
-      // });
-      res.render("main/admin/manageusers");
+      const transactions = await usermodel.find();
+      res.render("main/admin/manageUsers", {
+        users: transactions,
+      });
     } else {
       console.log(req.session.authUser);
       res.redirect("/error");
